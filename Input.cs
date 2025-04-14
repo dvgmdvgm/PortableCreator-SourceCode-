@@ -87,12 +87,15 @@ namespace test {
     [DllImport("kernel32.dll", SetLastError = true)]
     public static extern bool CloseHandle(IntPtr hObject);
     
-    // ==================== User.dll ====================
+    // ==================== User32.dll ====================
     [DllImport("user32.dll", SetLastError = true)]
     public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
 
     [DllImport("user32.dll", SetLastError = true)]
     public static extern bool PostMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+
+    [DllImport("user32.dll")]
+    public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
 
     // ==================== Shell32.dll ====================
     [DllImport("Shell32.dll", SetLastError = true)]
@@ -146,6 +149,9 @@ namespace test {
 
     // ==================== Константы для WM_CLOSE ====================
     public const uint WM_CLOSE = 0x0010;
+
+    // ==================== Константы для ShowWindow ====================
+    public const int SW_SHOWNOACTIVATE = 4;
   }
 
   // Хранение полей и переменных
@@ -207,16 +213,25 @@ namespace test {
 
   // Основной класс запуска портативки
   partial class Form1 {
+    protected override CreateParams CreateParams {
+        get {
+            CreateParams cp = base.CreateParams;
+            cp.ExStyle |= 0x80; // WS_EX_TOOLWINDOW — скрывает из Alt+Tab
+            cp.ExStyle &= ~0x40000; // Удаляет WS_EX_APPWINDOW
+            return cp;
+        }
+    }
     private IContainer components = null;
 
     private void InitializeComponent(string[] args) {
       ShowInTaskbar = false;
-      Variables.GetInstance.form1 = this;
+      Variables.GetInstance.form1 = this;     
       components = new Container();
       AutoScaleMode = AutoScaleMode.Font;
       Text = "Form1";
       FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
       Opacity = 0;
+      NativeMethods.ShowWindow(this.Handle, NativeMethods.SW_SHOWNOACTIVATE); // Метод для скрытия Лаунчера из Alt+Tab
 
       Load += async (s, a) => {
         if (args.Length > 0) {
