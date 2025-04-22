@@ -1,8 +1,0 @@
-Z:\Program Files\repos\PortableCreator Fork\PortableCreator\obj\Release\PortableCreator.csproj.AssemblyReference.cache
-Z:\Program Files\repos\PortableCreator Fork\PortableCreator\obj\Release\PortableCreator.Form1.resources
-Z:\Program Files\repos\PortableCreator Fork\PortableCreator\obj\Release\PortableCreator.csproj.GenerateResource.cache
-Z:\Program Files\repos\PortableCreator Fork\PortableCreator\obj\Release\PortableCreator.Properties.Resources.resources
-Z:\Program Files\repos\PortableCreator Fork\PortableCreator\obj\Release\PortableCreator.csproj.CoreCompileInputs.cache
-Z:\Program Files\repos\PortableCreator Fork\PortableCreator\bin\Release\PortableCreator.exe.config
-Z:\Program Files\repos\PortableCreator Fork\PortableCreator\bin\Release\PortableCreator.exe
-Z:\Program Files\repos\PortableCreator Fork\PortableCreator\obj\Release\PortableCreator.exe
